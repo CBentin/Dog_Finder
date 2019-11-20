@@ -2,22 +2,36 @@
     box-sizing: border-box;
 }
 
+h2{
+    margin: 20px 0px 20px 6%;
+    color: rgb(148, 147, 70);    
+}
+
+p{
+    margin: 20px 6% 20px 6%;   
+    font-weight: normal; 
+}
+
 body{
     margin: 0;
     padding: 0;
     font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
 }
 
 header{
     width: 100%;
-    padding: 5px 0 0 0;
+    padding: 1px 0 0 0;
     margin: 0;
-    color: white;
     background-color: #46433E;
 }
 
-h1{
-    padding: 0 0 0 8px;
+header>h2{
+    margin: 14px 0 15px 8px;
+    color: white;
 }
 
 /*
@@ -34,8 +48,9 @@ h1{
 */
 
 .navBar{
+    
     display: flex;
-    background-color: rgb(94, 90, 84);;
+    background-color: rgb(94, 90, 84);
 }
 
 .navMenuSpan{
@@ -54,12 +69,12 @@ h1{
 }
 
 .menuButton{
-    margin: 0 0 0 10px;
-    padding: 0;
+    margin: 3px 7px 0 10px;
+    padding: 0 0 0 0;
     border: none;
     color: rgb(148, 147, 70);
     background-color: rgb(94, 90, 84);
-    border-block-end: 5px solid;
+    border-block-end: 3px solid;
     border-block-end-color: rgb(94, 90, 84);
 }
 
@@ -68,8 +83,24 @@ h1{
     border-block-end-color: white;
 }
 
-.dogPostFeed{
+.menuButton>h3{
+    margin: 2px 0 2px 0;
+}
 
+main{
+    width: 80%;
+    background-color: white;
+}
+
+.dogPostFeed{
+    display: flex;
+    flex-direction: column;
+}
+
+.dogPostFeed> div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .scrollButton{
@@ -88,6 +119,6 @@ h1{
     font-size: 40px;
     background-color: white;
     border: none;
-    padding: 100px 10px 100px 10px;
-    margin: 0 10px 20px 10px;
+    padding: 150px 10px 150px 10px;
+    margin: 10px;
 }

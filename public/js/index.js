@@ -4,6 +4,7 @@ var indexSeenDog = 0;
 var lengthLostDog;
 var lengthFoundDog;
 var lengthSeenDog;
+var resolveData;
 
 function showLostDogs(){
 	fetch('/lost-dogs')
@@ -182,7 +183,26 @@ function getNewPosts(){
         }
     });
 }
-showLostDogs();
-showFoundDogs();
-showSeenDogs();
-getNewPosts();
+
+function resolvePost(){
+    $('#resolveLost').on('click', function(event){
+        event.preventDefault();
+        var email = 'example@gmail.com'
+        let qString = "resolved.html?var="+email;
+        window.location.href = qString;
+    });
+    $('#resolveFound').on('click', function(event){
+        event.preventDefault();
+        var email = 'example@gmail.com'
+        let qString = "resolved.html?var="+email;
+        window.location.href = qString;
+    });
+    $('#resolveSeen').on('click', function(event){
+        event.preventDefault();
+        var email = 'example@gmail.com'
+        let qString = "resolved.html?var="+email;
+        window.location.href = qString;
+    });
+}
+
+resolvePost();

@@ -20,13 +20,23 @@
         </div>
     </header>
     <main>
-        <form>
-            <input type='file' name='inputPicture' id='inputPicture'>
-            <div class='imagePreview' id='imagePreview'>
-                <span class='imagePreviewText'>Image Preview</span>
-                <img src='' alt='Image preview' class='imagePreviewPhoto'>
+        <form id='postDogForm'>
+            <h2>Post Dog</h2>
+            <p>Please select the type of post you desire to upload</p>
+            <table class="postTypeSelection">
+                <tbody>
+                    <tr>
+                        <td><label for="lostDogSelector"><h4>Lost</h4></label></td>
+                        <td><input id="lostDogSelector" input type="radio" name="post" value='lost'/></td>
+                        <td><label for="foundDogSelector"><h4>Found</h4></label></td>
+                        <td><input id="foundDogSelector" input type="radio" name="post" value='found'/></td>
+                        <td><label for="seenDogSelector"><h4>Seen</h4></label></td>
+                        <td><input id="seenDogSelector" input type="radio" name="post" value='seen'/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="hiddenForm">
             </div>
-            <button type='submit' class='submitButton'>Post</button>
         </form>
     </main>
     <footer>
@@ -37,7 +47,9 @@
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuvQ0iqFr72LJQ2elGfmevRucSsKukCSU&libraries=places"></script>
     <script src = "./js/menu.js" type = "text/javascript"></script>
     <script src = "./js/post.js" type = "text/javascript"></script>
+    
 </body>
 </html>

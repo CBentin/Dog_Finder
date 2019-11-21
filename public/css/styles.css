@@ -214,6 +214,7 @@ main{
 
 #credentialsTableBody>tr>td{
     width:300px;
+    margin: 0;
 }
 
 #registerForm>div{
@@ -244,6 +245,62 @@ main{
 
 .regInput{
     width: 100%;
+}
+
+#postDogForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#postDogForm>h2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#postDogForm>p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 10px 0;
+    font-size: 90%;
+    color: rgb(145, 145, 145);
+}
+
+#postDogForm>div>p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 10px 0;
+    font-size: 90%;
+    color: rgb(145, 145, 145);
+}
+
+#postDogForm>.hiddenForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#postDogForm>.hiddenForm>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#infoTableForm{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .imagePreview{

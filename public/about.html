@@ -2,7 +2,7 @@
 <html lang="eng">
 <head>
     <meta charset="utf-8"/>
-    <title>Dog Finder</title>
+    <title>Dog Finder About Us</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
@@ -10,17 +10,18 @@
         <h2 class='banner'>FIND MY DOG</h2>
         <div class='navBar'>
             <span class='navMenuSpan'>
-                <button class='menuButton'><h3>Home</h3></button>
-                <button class='menuButton'><h3>About Us</h3></button>
+                <button class='menuButton' id='index'><h3>Home</h3></button>
+                <button class='menuButton' id='about'><h3>About Us</h3></button>
+                <button class='menuButton' id='post'><h3>Post</h3></button>
             </span>
             <span class='loginSpan'>
-                <button class='menuButton'><h3>Login</h3></button>
+                <button class='menuButton' id='login'><h3>Login</h3></button>
             </span>
         </div>
     </header>
     <main>
+        <h2>Who are we?</h2>
         <div id='whoWeAre'>
-            <h2>Who are we?</h2>
             <p>
                 We are two young students, Christian and Javier, who study Engineering in Digital Systems at ITEMS in Monterrey, Mexico. 
                 We both love and care about dogs and we are dog owners ourself. As dog owners we know the emotional load and the hassle of losing a dog. 
@@ -38,17 +39,33 @@
                 be it you have found a dog or lost a dog. We hope our small application proves helpful and good luck in your search!
             </p>
         </div>
-        <div id='whoIsChristian'>
-            <h2>Who is Christian?</h2>
-            <img href=""/>
+        <h2>Who is Christian?</h2>
+        <div class="whoIs" id="whoIsChristian">
+            <img src="./assets/images/about/christian.jpeg" id="christianImage"/>
             <p>
-                I'm Christian Bentin a 23 year old student. I currently study at ITESM and hope in one year to be graduated as a Digital Systems Engineer. As said before I am a dog woner, 
-                I have a old, small and beautiful Chihuaha named "Chiquita", which literaly translates to small, and a big, clumpsy and beautiful Labrador named "Nala". I love thme both and hope to never loose them.
+                I'm Christian Bentin a 23 year old student. I currently study at ITESM and hope in one year to be graduated as a Digital Systems Engineer. I have varying hobbies such as robotics,
+                video games and walking my dogs.  As said before I am a dog owner, I have a old, small and beautiful Chihuaha named "Chiquita", which literaly translates to small, 
+                and a big, clumpsy and beautiful Labrador named "Nala". I love thme both and hope to never loose them. I'm a very optimistic person and always try to see the good in
+                everything.
             </p>
         </div>
-        <div id='whoIsJavier'>
-
+        <h2>Who is Javier?</h2>
+        <div class="whoIs" id='whoIsJavier'>
+            <img src="./assets/images/about/javier.jpg" id="javierImage"/>
+            <p>
+                I'm Javier Escamilla and I love dogas and cats. I have a small dog named "Selucio", he is a 3 year old Chichuahua that I love. I have some hobbies such as robotics, where I met
+                my friend Christian, and going out with friends. Also I'm well known to be a man of great imagination and one of few words.
+            </p>
         </div>
     </main>
+    <footer>
+        <p>This is an early alfa version of the application.</p> 
+        <p>There may be some incomplete functions or they may not function correctly.</p>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+    <script src = "./js/menu.js" type = "text/javascript"></script>
 </body>
 </html>

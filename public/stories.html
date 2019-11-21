@@ -2,7 +2,7 @@
 <html lang="eng">
 <head>
     <meta charset="utf-8"/>
-    <title>Dog Finder Post</title>
+    <title>Dog Finder About Us</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
@@ -22,24 +22,24 @@
         </div>
     </header>
     <main>
-        <form id='postDogForm'>
-            <h2>Post Dog</h2>
-            <p>Please select the type of post you desire to upload</p>
-            <table class="postTypeSelection">
-                <tbody>
-                    <tr>
-                        <td><label for="lostDogSelector"><h4>Lost</h4></label></td>
-                        <td><input id="lostDogSelector" input type="radio" name="post" value='lost'/></td>
-                        <td><label for="foundDogSelector"><h4>Found</h4></label></td>
-                        <td><input id="foundDogSelector" input type="radio" name="post" value='found'/></td>
-                        <td><label for="seenDogSelector"><h4>Seen</h4></label></td>
-                        <td><input id="seenDogSelector" input type="radio" name="post" value='seen'/></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="hiddenForm">
-            </div>
-        </form>
+        <h2>Stories</h2>
+        <p>Through this website we have been able to help people find their dog or the dogs owner. Here are some examples of real life cases</p>
+        <h2>Amanda's Case</h2>
+        <div class="whoIs" id="amandaCase">
+            <img src="./assets/images/stories/amanda.jpg" id="amandaImage"/>
+            <p>
+                Amanda lost her dog "Precious" on 9/23/2019. She went door to door looking for her, but with no success. However she found out about our application
+                and she posted a lost Dog post on our website. Luckyly for her, another user had already found her and as soon he saw her post he contacted her. 
+                Since then Amanda and Precious are together again.
+            </p>
+        </div>
+        <h2>Mariana's case</h2>
+        <div class="whoIs" id="marianaCase">
+            <img src="./assets/images/stories/mariana.jpg" id="marianaImage"/>
+            <p>
+                
+            </p>
+        </div>
     </main>
     <footer>
         <p>This is an early alfa version of the application.</p> 
@@ -49,9 +49,6 @@
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuvQ0iqFr72LJQ2elGfmevRucSsKukCSU&libraries=places"></script>
     <script src = "./js/menu.js" type = "text/javascript"></script>
-    <script src = "./js/post.js" type = "text/javascript"></script>
-    
 </body>
 </html>

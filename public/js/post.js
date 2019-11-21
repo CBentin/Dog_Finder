@@ -1,7 +1,7 @@
 var placeSearch, autocomplete, option, base64Img;
 
 var lostHtml = `<p>Please fill the following form correctly. Spaces marked with * are obligatory</p>
-                <input type='file' name='inputPicture' id='inputPicture' required>
+                <input type='file' name='inputPicture' id='inputPicture'>
                 <div class='imagePreview' id='imagePreview'>
                     <span class='imagePreviewText'>Image Preview</span>
                     <img src='' alt='Image preview' class='imagePreviewPhoto'>
@@ -79,7 +79,7 @@ var lostHtml = `<p>Please fill the following form correctly. Spaces marked with 
                 </div>`;
 
 var foundHtml = `<p>Please fill the following form correctly. Spaces marked with * are obligatory</p>
-                <input type='file' name='inputPicture' id='inputPicture' required>
+                <input type='file' name='inputPicture' id='inputPicture'>
                 <div class='imagePreview' id='imagePreview'>
                     <span class='imagePreviewText'>Image Preview</span>
                     <img src='' alt='Image preview' class='imagePreviewPhoto'>
@@ -145,7 +145,7 @@ var foundHtml = `<p>Please fill the following form correctly. Spaces marked with
                 </div>`;
 
 var seenHtml = `<p>Please fill the following form correctly. Spaces marked with * are obligatory</p>
-                <input type='file' name='inputPicture' id='inputPicture' required>
+                <input type='file' name='inputPicture' id='inputPicture'>
                 <div class='imagePreview' id='imagePreview'>
                     <span class='imagePreviewText'>Image Preview</span>
                     <img src='' alt='Image preview' class='imagePreviewPhoto'>
@@ -219,7 +219,28 @@ var componentForm = {
   postal_code: 'short_name'
 };
 
+var username = '';
+var loggedIn = false;
+
+function getUsername(){
+    var queryString = decodeURIComponent(window.location.search);
+    console.log(queryString);
+    if(queryString != ""){
+        username = queryString.split('=')[1];
+        if(username != ''){
+            loggedIn = true;
+        }
+        else{
+            loggedIn = false;
+        }
+    }
+    else{
+        loggedIn = false;
+    }
+}
+
 function uploadPost(){
+    console.log("Entrando POST")
     $('#postDogForm').on('submit', function(event){
         event.preventDefault();
         let addr, infoData;
@@ -230,29 +251,7 @@ function uploadPost(){
             addr = $('#route').val();
         }
         if(option == 'lost'){
-            /*$.ajax({
-                url: "url",
-                data:{
-                    image: base64Img,
-                    name: $('#nameDogForm').val(),
-                    breed: $('#breedDogForm').val(),
-                    color: $('#colorDogForm').val(),
-                    date: new Date($('#timeOfInteraction').val()),
-                    reward: $('#rewardDogForm').val(),
-                    comments: $('#commentsDogForm').val(),
-                    address: addr,
-                    zipCode: $('#postal_code').val(),
-                    city: $('#locality').val(),
-                    state: $('#administrative_area_level_1').val(),
-                    country: $('#country').val()
-                },
-                method: "POST",
-                dataType: "json",
-                success: function (responseJSON){
-                    window.location.replace("home.html");  
-                }
-              });*/
-            infoData={
+            data = {
                 image: base64Img,
                 name: $('#nameDogForm').val(),
                 breed: $('#breedDogForm').val(),
@@ -265,31 +264,27 @@ function uploadPost(){
                 city: $('#locality').val(),
                 state: $('#administrative_area_level_1').val(),
                 country: $('#country').val()
-            };
-            console.log(infoData);
-        }
-        else{
-            /*$.ajax({
-                url: "url",
-                data:{
-                    image: base64Img,
-                    breed: $('#breedDogForm').val(),
-                    color: $('#colorDogForm').val(),
-                    date: new Date($('#timeOfInteraction').val()),
-                    comments: $('#commentsDogForm').val(),
-                    address: addr,
-                    zipCode: $('#postal_code').val(),
-                    city: $('#locality').val(),
-                    state: $('#administrative_area_level_1').val(),
-                    country: $('#country').val()
+            }
+            fetch('/lost-dogs', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                method: "POST",
-                dataType: "json",
-                success: function (responseJSON){
-                    window.location.replace("home.html");  
-                }
-              });*/
-              infoData={
+                method: 'post',
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                window.location.replace("../index.html")
+                console.log(response.json())
+                return response.json();
+            })
+            .catch( err => {
+                console.log("Internal error")
+                console.log( err );
+            });
+        }
+        else if(option == 'found'){
+            data={
                 image: base64Img,
                 breed: $('#breedDogForm').val(),
                 color: $('#colorDogForm').val(),
@@ -301,7 +296,55 @@ function uploadPost(){
                 state: $('#administrative_area_level_1').val(),
                 country: $('#country').val()
             };
-            console.log(infoData);
+            fetch('/found-dogs', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'post',
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                window.location.replace("../index.html")
+                console.log(response.json())
+                return response.json();
+            })
+            .catch( err => {
+                console.log("Internal error")
+                console.log( err );
+            });
+
+        }
+        else if(option == 'seen'){
+              data={
+                image: base64Img,
+                breed: $('#breedDogForm').val(),
+                color: $('#colorDogForm').val(),
+                date: new Date($('#timeOfInteraction').val()),
+                comments: $('#commentsDogForm').val(),
+                address: addr,
+                zipCode: $('#postal_code').val(),
+                city: $('#locality').val(),
+                state: $('#administrative_area_level_1').val(),
+                country: $('#country').val()
+            };
+            fetch('/seen-dogs', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'post',
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                //window.location.replace("../index.html")
+                console.log(response.json())
+                return response.json();
+            })
+            .catch( err => {
+                console.log("Internal error")
+                console.log( err );
+            });
         }
     });
 }
@@ -309,24 +352,30 @@ function uploadPost(){
 function showFields(){
     $('input[type=radio]').change(function(){
         $('.hiddenForm').html('');
-        option = this.value;
-        if(option == 'lost'){
-            $('.hiddenForm').html(lostHtml);
-            geolocate();
-            initAutocomplete();
-            uploadPicture();
+        console.log(loggedIn);
+        if(loggedIn){    
+            option = this.value;
+            if(option == 'lost'){
+                $('.hiddenForm').html(lostHtml);
+                geolocate();
+                initAutocomplete();
+                uploadPicture();
+            }
+            else if(option == 'found'){
+                $('.hiddenForm').html(foundHtml);
+                geolocate();
+                initAutocomplete();
+                uploadPicture();
+            }
+            else if(option == 'seen'){
+                $('.hiddenForm').html(seenHtml);
+                geolocate();
+                initAutocomplete();
+                uploadPicture();
+            }
         }
-        else if(option == 'found'){
-            $('.hiddenForm').html(foundHtml);
-            geolocate();
-            initAutocomplete();
-            uploadPicture();
-        }
-        else if(option == 'seen'){
-            $('.hiddenForm').html(seenHtml);
-            geolocate();
-            initAutocomplete();
-            uploadPicture();
+        else{
+            alert("Please Log in to your account");
         }
     });
 }
@@ -400,6 +449,6 @@ function geolocate() {
     }
 }
 
+getUsername();
 showFields();
-
 uploadPost();

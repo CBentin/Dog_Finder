@@ -4,10 +4,29 @@ var indexSeenDog = 0;
 var lengthLostDog;
 var lengthFoundDog;
 var lengthSeenDog;
-var resolveData;
+
+var username = '';
+var loggedIn = false;
+
+function getUsername(){
+    var queryString = decodeURIComponent(window.location.search);
+    if(queryString != ""){
+        username = queryString.split('=')[1];
+        if(username != ''){
+            loggedIn = true;
+        }
+        else{
+            loggedIn = false;
+        }
+    }
+    else{
+        loggedIn = false;
+    }
+}
 
 function showLostDogs(){
-	fetch('/lost-dogs')
+    let noFilter = 'noFilter' 
+	fetch('/lost-dogs/' + noFilter)
 		.then( response => {
 
 			if ( response.ok ){
@@ -45,15 +64,14 @@ function showLostDogs(){
             $('#countryDogLostFeed').append(`${responseJSON[indexLostDog].country}`);
 		})
 		.catch( err => {
-            $('#imagePreviewFound>.imagePreviewText').css('display','flex');
-            $('#imagePreviewFound>.imagePreviewPhoto').css('display','none');
             console.log("Internal error")
 			console.log( err );
 		});
 }
 
 function showFoundDogs(){
-	fetch('/found-dogs')
+    let noFilter = 'noFilter' 
+	fetch('/found-dogs/' + noFilter)
 		.then( response => {
 
 			if ( response.ok ){
@@ -63,7 +81,6 @@ function showFoundDogs(){
 		})
 		.then( responseJSON => {   
             lengthFoundDog = responseJSON.length;
-            
             $('#breedDogFoundFeed').html('<h4>Breed </h4>');
             $('#colorDogFoundFeed').html('<h4>Color </h4>');
             $('#dateDogFoundFeed').html('<h4>Date </h4>');
@@ -86,18 +103,16 @@ function showFoundDogs(){
             $('#cityDogFoundFeed').append(`${responseJSON[indexFoundDog].city}`);
             $('#stateDogFoundFeed').append(`${responseJSON[indexFoundDog].state}`);
             $('#countryDogFoundFeed').append(`${responseJSON[indexFoundDog].country}`);
-            
 		})
 		.catch( err => {
-            $('#imagePreviewFound>.imagePreviewText').css('display','flex');
-            $('#imagePreviewFound>.imagePreviewPhoto').css('display','none');
             console.log("Internal error")
 			console.log( err );
 		});
 }
 
 function showSeenDogs(){
-	fetch('/seen-dogs')
+    let noFilter = 'noFilter' 
+	fetch('/seen-dogs/' + noFilter)
 		.then( response => {
 
 			if ( response.ok ){
@@ -107,7 +122,6 @@ function showSeenDogs(){
 		})
 		.then( responseJSON => {
             lengthSeenDog = responseJSON.length;
-            
             $('#breedDogSeenFeed').html('<h4>Breed </h4>');
             $('#colorDogSeenFeed').html('<h4>Color </h4>');
             $('#dateDogSeenFeed').html('<h4>Date </h4>');
@@ -132,11 +146,62 @@ function showSeenDogs(){
             $('#countryDogSeenFeed').append(`${responseJSON[indexSeenDog].country}`);
 		})
 		.catch( err => {
-            $('#imagePreviewFound>.imagePreviewText').css('display','flex');
-            $('#imagePreviewFound>.imagePreviewPhoto').css('display','none');
             console.log("Internal error")
 			console.log( err );
 		});
+}
+
+function getNewPosts(){
+    $('#lostDogBack').on('click', function(event){
+        console.log('lostDogBack')
+        event.preventDefault();
+        if(indexLostDog > 0){
+            indexLostDog--;
+            showLostDogs();
+        }
+        console.log(indexLostDog)
+    });
+    $('#lostDogNext').on('click', function(event){
+        console.log('lostDogNext')
+        event.preventDefault();
+        if(indexLostDog < lengthLostDog - 1){
+            indexLostDog++;
+            showLostDogs();
+        }
+        console.log(indexLostDog)
+    });
+    $('#foundDogBack').on('click', function(event){
+        console.log('foundDogBack')
+        event.preventDefault();
+        if(indexFoundDog > 0){
+            indexFoundDog--;
+            showFoundDogs();
+        }
+        console.log(indexFoundDog)
+    });
+    $('#foundDogNext').on('click', function(event){
+        console.log('foundDogNext')
+        event.preventDefault();
+        if(indexFoundDog < lengthFoundDog - 1){
+            indexFoundDog++;
+            showFoundDogs();
+        }
+        console.log(indexFoundDog)
+    });
+    $('#seenDogBack').on('click', function(event){
+        event.preventDefault();
+        if(indexSeenDog > 0){
+            indexSeenDog--;
+            showSeenDogs();
+        }
+    });
+    $('#seenDogNext').on('click', function(event){
+        event.preventDefault();
+        if(indexSeenDog < lengthSeenDog - 1){
+            indexSeenDog++;
+            showSeenDogs();
+        }
+    });
 }
 
 function getNewPosts(){
@@ -187,22 +252,42 @@ function getNewPosts(){
 function resolvePost(){
     $('#resolveLost').on('click', function(event){
         event.preventDefault();
-        var email = 'example@gmail.com'
-        let qString = "resolved.html?var="+email;
-        window.location.href = qString;
+        if(loggedIn){
+            var email = 'example@gmail.com'
+            let qString = "resolved.html?var="+email;
+            window.location.href = qString;
+        }
+        else{
+            alert("Please Log in to your account");
+        }
     });
     $('#resolveFound').on('click', function(event){
         event.preventDefault();
-        var email = 'example@gmail.com'
-        let qString = "resolved.html?var="+email;
-        window.location.href = qString;
+        if(loggedIn){
+            var email = 'example@gmail.com'
+            let qString = "resolved.html?var="+email;
+            window.location.href = qString;
+        }
+        else{
+            alert("Please Log in to your account");
+        }
     });
     $('#resolveSeen').on('click', function(event){
         event.preventDefault();
-        var email = 'example@gmail.com'
-        let qString = "resolved.html?var="+email;
-        window.location.href = qString;
+        if(loggedIn){
+            var email = 'example@gmail.com'
+            let qString = "resolved.html?var="+email;
+            window.location.href = qString;
+        }
+        else{
+            alert("Please Log in to your account");
+        }
     });
 }
 
+getUsername();
+showLostDogs();
+showFoundDogs();
+showSeenDogs();
+getNewPosts();
 resolvePost();
